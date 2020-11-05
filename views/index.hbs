@@ -6,8 +6,8 @@
 </div>
 <div class="row">
     <div class="col">
-        <form action="/search" method="get">
-            <label for="charSearch">Please search for a character:</label>
+        <form action="/" method="get">
+            <label for="charSearch">Please search for a character (can input the start of a character's name):</label>
             <input type="text" name="charSearch" id="charSearch" size="50">
             <button type="submit" class="btn btn-primary">Search</button>
         </form>
@@ -26,9 +26,10 @@
             <button type="submit" name="btnPressed" value="prev">Prev</button>
             <button type="submit" name="btnPressed" value="next">Next</button>
             <input type="hidden" name="offset" value="{{offset}}">
+            <input type="hidden" name="charSearch" value="{{charSearch}}">
         </form>
     </div>
 </div>
-<div class="row">
+<div class="row mt-3">
     <div class="col">{{{attribution}}}</div>
 </div>

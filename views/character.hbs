@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col text-center text-white bg-dark">
+        <h1>Marvel Character Search</h1>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-4">
+        <img src={{charThumbNail}} alt="Character thumbnail" style="width:100%;">
+    </div>
+    <div class="col">
+        <h2 class="text-dark">{{charName}}</h2>
+        <p>{{charDescription}}</p>
+        <p></p>
+        <h4>Find out more:</h4>
+        <ul>
+            {{#each charMore}}
+                <li><a href={{this.url}}>{{this.type}}</a></li>
+            {{/each}}
+        </ul>
+        <p></p>
+        <p><a href="/"><button class="btn btn-primary">Back</button></a></p>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col">{{{attribution}}}</div>
+</div>

@@ -110,6 +110,34 @@ app.get('/', async (req, res, next) => {
     }
 });
 
+app.get('/character/:charID', async (req, res, next) => {
+    const characterID = req.params['charID'];
+    const url = baseUrl + characterUrl + "/" + characterID + "?ts=" + timeStamp + "&apikey=" + PUB_API_KEY + "&hash=" + md5Hash(timeStamp + PRI_API_KEY + PUB_API_KEY);
+
+    try {
+        const results = await fetch(url);
+        const valReturned = await results.json();
+
+        // debugging logs
+        console.info("==> response obtained: ", valReturned);
+        console.info("======================")
+        console.info("==> character obtained: ", valReturned.data.results[0]);
+
+        res.status(200).type('text/html');
+        res.render('character', {
+            charName: valReturned.data.results[0].name,
+            charThumbNail: valReturned.data.results[0].thumbnail.path + "." + valReturned.data.results[0].thumbnail.extension,
+            charDescription: valReturned.data.results[0].description,
+            charMore: valReturned.data.results[0].urls,
+            attribution: valReturned.attributionHTML
+        });
+    } catch (error) {
+        console.error('==> An internal server error occurred');
+        res.status(500).type('text/html');
+        res.send('Internal Server error occurred');
+    }
+});
+
 // start the server
 if(PUB_API_KEY && PRI_API_KEY) {
     app.listen(PORT, () => {

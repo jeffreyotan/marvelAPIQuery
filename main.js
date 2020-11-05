@@ -9,6 +9,9 @@ const md5Hash = require('crypto-js/md5');
 // configure the port to listen to, with default being 3000
 const PORT = parseInt(process.argv[2]) || parseInt(process.env.PORT) || 3000;
 
+// define some global constants
+const QUERYLIMIT = 20;
+
 // retrieve the API_KEY needed to run the queries
 const PUB_API_KEY = process.env.PUB_API_KEY || "";
 const PRI_API_KEY = process.env.PRI_API_KEY || "";
@@ -55,7 +58,7 @@ app.get('/', async (req, res, next) => {
         console.info("==> character obtained: ", valReturned.data.results[0]);
 
         res.status(200).type('text/html');
-        res.render('index', { character: valReturned.data.results });
+        res.render('index', { character: valReturned.data.results, attribution: valReturned.attributionHTML });
     } catch (error) {
         console.error('==> An internal server error occurred');
         res.status(500).type('text/html');

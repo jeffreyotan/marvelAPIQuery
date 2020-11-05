@@ -1,10 +1,34 @@
 <div class="row">
     <div class="col">
-        <h2>Below is a list of Marvel characters:</h2>
+        <h2>Welcome to the Marvel Universe character search</h2>
+        <p>You can search for a specific character or look from the list provided.</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <form action="/search" method="get">
+            <label for="charSearch">Please search for a character:</label>
+            <input type="text" name="charSearch" id="charSearch" size="50">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h4>Below is a list of Marvel characters:</h4>
         <ul>
             {{#each character}}
                 <li><a href="/character/{{this.id}}">{{this.name}}</a></li>
             {{/each}}
         </ul>
+        <p></p>
+        <form action="/" method="get">
+            <button type="submit" name="btnPressed" value="prev">Prev</button>
+            <button type="submit" name="btnPressed" value="next">Next</button>
+            <input type="hidden" name="offset" value="{{offset}}">
+        </form>
     </div>
+</div>
+<div class="row">
+    <div class="col">{{{attribution}}}</div>
 </div>
